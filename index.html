@@ -12,16 +12,22 @@
     <div id="app">
         <div class="row">
             <div class="small-5 columns text-center">
-                <img v-if="myChoice !==null" v-bind:src="'images/' + myChoice + '.jpg'" alt="" class="text-center">
-                <img v-else src="images/question.jpg" alt="" class="text-center">
+                <img 
+                :src="myChoiceImg"
+                alt="" 
+                class="text-center"
+                >
                 <h1 class="text-center"><strong>YOU</strong></h1>
             </div>
             <div class="small-2 columns text-center">
                 <h1 style="font-size:100px;"><strong>{{ count }}</strong></h1>
             </div>
             <div class="small-5 columns text-center">
-                <img v-if="comChoice !==null" v-bind:src="'images/' + comChoice + '.jpg'" alt="" class="text-center">
-                <img v-else src="images/question.jpg" alt="" class="text-center">
+                <img 
+                :src="comChoiceImg"
+                alt="" 
+                class="text-center"
+                >
                 <h1 class="text-center"><strong>Computer</strong></h1>
             </div>
         </div>
@@ -34,7 +40,7 @@
                     class="heart" 
                     alt=""
                     >
-                    <img v-for="life in 3 - lifeOfMe" 
+                    <img v-for="life in leftLifeOfMe" 
                     src="./images/broken-heart.jpg" 
                     class="heart" 
                     alt=""
@@ -48,7 +54,7 @@
                     class="heart" 
                     alt=""
                     >
-                    <img v-for="life in 3 - lifeOfCom" 
+                    <img v-for="life in leftLifeOfCom" 
                     src="./images/broken-heart.jpg" 
                     class="heart" 
                     alt=""
@@ -61,14 +67,11 @@
             <div class="small-6 columns text-center">
                 <div class="row">
                     <div class="small-8 small-offset-2 columns text-center">
-                        <label class="radio-label">
-                            <input type="radio" v-model="myChoice" value="scissor"> 가위
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" v-model="myChoice" value="rock"> 바위
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" v-model="myChoice" value="paper"> 보
+                        <label
+                            v-for="select in selects"
+                            class="radio-label"
+                        >
+                            <input type="radio" v-model="myChoice" :value="select.value"> {{select.name}}
                         </label>
                     </div>
                 </div>
